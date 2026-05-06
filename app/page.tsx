@@ -385,7 +385,7 @@ export default function Page() {
 
                 {/* WhatsApp Direct Message Button */}
                 <a
-                  href="https://wa.me/916301843321"
+                  href="https://wa.me/message/VA6S6FTVC2QNF1"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white py-3 px-4 rounded-md font-medium transition-colors duration-200 shadow-sm"
