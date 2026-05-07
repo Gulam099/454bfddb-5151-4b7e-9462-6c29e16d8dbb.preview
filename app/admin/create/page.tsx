@@ -135,6 +135,9 @@ function CreatePostContent() {
                 <option>Business Accounting</option>
                 <option>Payroll</option>
                 <option>Financial Planning</option>
+                <option>GST Update</option>
+                <option>Income Tax Update</option>
+                <option>Update</option>
               </select>
             </div>
           </div>

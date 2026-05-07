@@ -22,13 +22,13 @@ export default function HeroSection() {
     }, [images.length]);
 
     return (
-        <section className="relative pt-12 md:pt-16 pb-20">
+        <section className="relative pt-8 md:pt-12 pb-20">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
                 <div className="grid md:grid-cols-2 gap-12 items-start">
 
                     {/* LEFT TEXT */}
-                    <div className="space-y-8 pt-4 md:pt-10">
+                    <div className="space-y-6 md:pt-4">
 
                         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
                             Your Trusted Partner for{" "}
@@ -37,19 +37,29 @@ export default function HeroSection() {
                             </span>
                         </h1>
 
-                        <p className="text-lg md:text-xl text-muted-foreground font-medium">
+                        <p className="text-lg md:text-xl text-muted-foreground font-medium leading-relaxed">
                             GST | Income Tax | Loans | Insurance | Business Registration —{" "}
                             <span className="font-semibold text-foreground">
-                                sab kuch ek hi jagah.
+                                Your One-Stop Destination for GST, ITR and Business Compliances in Bareilly.
                             </span>{" "}
-                            Bareilly ke trusted consultant ke saath apna kaam fast aur tension-free karayein.
+                            Empowering Bareilly's Growth with Expert Tax & Legal Solutions.
                         </p>
 
+                        <div>
+                            <a
+                                href="https://wa.me/message/VA6S6FTVC2QNF1"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-primary-foreground py-3 px-6 rounded-xl font-bold text-lg transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 transform"
+                            >
+                                Talk to our expert
+                            </a>
+                        </div>
                     </div>
 
                     {/* RIGHT IMAGE SLIDER */}
-                    <div className="relative w-full">
-                        <div className="relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-lg bg-muted">
+                    <div className="relative w-full md:pt-4">
+                        <div className="relative h-[350px] md:h-[500px] rounded-2xl overflow-hidden shadow-lg bg-muted">
                             {images.map((img, index) => (
                                 <div
                                     key={index}

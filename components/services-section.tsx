@@ -1,5 +1,6 @@
 import { Card } from '@/components/ui/card'
-import { FileText, ShieldPlus, BriefcaseBusiness, IndianRupee, Calculator, LineChart } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { FileText, ShieldPlus, BriefcaseBusiness, IndianRupee, Calculator, LineChart, MessageCircle, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 
 export default function ServicesSection() {
@@ -14,6 +15,9 @@ export default function ServicesSection() {
                 "GSTR-1, 3B & 9 Filing",
                 "GST Assessment & Advisory",
             ],
+            actionType: 'whatsapp',
+            whatsappMessage: 'Hello Alpha Tax Consultant, mujhe GST Filing aur Registration ke baare mein jaankari chahiye. Please guide karein.',
+            BtnTitle: "Consult Now"
         },
         {
             Icon: <FileText className="w-6 h-6" />,
@@ -25,6 +29,9 @@ export default function ServicesSection() {
                 "Capital Gains Calculation",
                 "Tax Saving Strategies",
             ],
+            actionType: 'whatsapp',
+            whatsappMessage: 'Hello Alpha Tax Consultant, mujhe apna Income Tax Return (ITR) file karwana hai. Kaunse documents lagenge?',
+            BtnTitle: "File your ITR"
         },
         {
             Icon: <ShieldPlus className="w-6 h-6" />,
@@ -36,6 +43,8 @@ export default function ServicesSection() {
                 "Internal Audit",
                 "Tax Audit under IT Act",
             ],
+            actionType: 'contact',
+            BtnTitle: "Book an Audit",
         },
         {
             Icon: <BriefcaseBusiness className="w-6 h-6" />,
@@ -47,6 +56,9 @@ export default function ServicesSection() {
                 "Payroll Management",
                 "Financial Statement Prep",
             ],
+            actionType: 'whatsapp',
+            whatsappMessage: 'Hello Alpha Tax Consultant, mujhe apni business ke liye Accounting aur Bookkeeping service ki details chahiye.',
+            BtnTitle: "Get a Quote",
         },
         {
             Icon: <IndianRupee className="w-6 h-6" />,
@@ -58,6 +70,9 @@ export default function ServicesSection() {
                 "LLP & Partnership",
                 "MSME & Trade License",
             ],
+            actionType: 'whatsapp',
+            whatsappMessage: 'Hello Alpha Tax Consultant, mujhe Naya Business Register karwana hai, Kya process hai?',
+            BtnTitle: "Register Today",
         },
         {
             Icon: <LineChart className="w-6 h-6" />,
@@ -69,6 +84,8 @@ export default function ServicesSection() {
                 "Project Reports & Loans",
                 "Retirement Planning",
             ],
+            actionType: 'contact',
+            BtnTitle: "Talk to Our Expert",
         },
     ];
 
@@ -114,7 +131,7 @@ export default function ServicesSection() {
                                     {service.description}
                                 </p>
 
-                                <ul className="space-y-3 border-t border-border pt-6">
+                                <ul className="space-y-3 border-t border-border pt-6 mb-8">
                                     {service.points.map((point, i) => (
                                         <li key={i} className="flex items-start gap-3 text-sm font-medium text-foreground">
                                             <span className="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-primary" />
@@ -122,6 +139,37 @@ export default function ServicesSection() {
                                         </li>
                                     ))}
                                 </ul>
+
+                                <div className="mt-auto">
+                                    {service.actionType === 'whatsapp' ? (
+                                        <Button
+                                            asChild
+                                            variant="default"
+                                            className="w-full gap-2 h-12 rounded-xl text-base font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
+                                        >
+                                            <a
+                                                href={`https://wa.me/916301843321?text=${encodeURIComponent(service.whatsappMessage || '')}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center justify-center w-full gap-2"
+                                            >
+                                                {service.BtnTitle}
+                                                <ArrowRight className="w-5 h-5" />
+                                            </a>
+                                        </Button>
+                                    ) : (
+                                        <Button
+                                            asChild
+                                            variant="default"
+                                            className="w-full gap-2 h-12 rounded-xl text-base font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
+                                        >
+                                            <a href="#contact" className="flex items-center justify-center w-full gap-2">
+                                                {service.BtnTitle}
+                                                <ArrowRight className="w-5 h-5" />
+                                            </a>
+                                        </Button>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     ))}

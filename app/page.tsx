@@ -1,13 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ChevronDown, Check, Star, MapPin, Phone, Mail, IndianRupee, BriefcaseBusiness, FileText, ShieldPlus, Loader2, Send, Search, Instagram, Facebook, MessageCircle, Menu, X } from 'lucide-react'
+import { ChevronDown, Check, Star, MapPin, Phone, Mail, IndianRupee, BriefcaseBusiness, FileText, ShieldPlus, Loader2, Send, Search, Instagram, Facebook, MessageCircle, Menu, X, Quote, User } from 'lucide-react'
 import HeroSection from '@/components/hero-section'
 import ServicesSection from '@/components/services-section'
 
@@ -20,8 +20,22 @@ export default function Page() {
     message: '',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showWhatsApp, setShowWhatsApp] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error', msg: string } | null>(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowWhatsApp(true)
+      } else {
+        setShowWhatsApp(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -71,7 +85,7 @@ export default function Page() {
               </div>
               <div className="flex flex-col">
                 <span className="font-bold text-lg leading-none text-primary">Alpha Tax</span>
-                <span className="text-[10px] tracking-widest text-muted-foreground uppercase font-semibold mt-1">Consultancy</span>
+                <span className="text-[10px] tracking-widest text-muted-foreground uppercase font-semibold mt-1">Consultant</span>
               </div>
             </div>
 
@@ -146,7 +160,7 @@ export default function Page() {
             {/* Image */}
             <div className="relative h-96 w-full">
               <Image
-                src="/Photo.png"
+                src="/aboutUs-image.png"
                 alt="About us"
                 fill
                 className="object-cover rounded-2xl shadow-lg"
@@ -159,22 +173,22 @@ export default function Page() {
               <div>
                 <h2 className="hidden md:block text-4xl font-bold mb-4">About Us</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  With over 10 years of experience in accounting and tax services, we&apos;ve helped hundreds of businesses achieve financial success. Our team of certified professionals is dedicated to providing the highest quality service with a personal touch.
+                  Alpha Tax Consultant is a premium firm dedicated to helping businesses achieve financial success through expert GST, ITR, Loan and Financial Planning. We focus on providing high-quality, professional service that you can trust.
                 </p>
               </div>
               <div className="space-y-4">
                 <div className="flex gap-4">
                   <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-semibold mb-1">Expert Team</h3>
-                    <p className="text-muted-foreground">Qualified and experienced accounting professionals</p>
+                    <h3 className="font-semibold mb-1">Legal Expertise</h3>
+                    <p className="text-muted-foreground">Combining accounting skills with legal insights for a complete solution.</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
                   <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-semibold mb-1">Proven Track Record</h3>
-                    <p className="text-muted-foreground">10+ years of successful client relationships</p>
+                    <h3 className="font-semibold mb-1">Proven Reliability</h3>
+                    <p className="text-muted-foreground">Trusted by local businesses in Bareilly for transparent and fast services.</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -198,7 +212,7 @@ export default function Page() {
             {[
               {
                 title: 'Experienced Team',
-                description: 'Certified professionals with deep industry knowledge',
+                description: 'Expert guidance with deep accounting and legal knowledge',
               },
               {
                 title: 'Fast & Accurate',
@@ -232,39 +246,85 @@ export default function Page() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                name: 'Rajesh Kumar',
-                company: 'TechStart Solutions',
+                name: 'Azeem Khan',
+                company: 'The Forest Cafe',
                 rating: 5,
-                text: 'Outstanding service! They simplified our accounting process and saved us significant time and money. Highly recommended!',
+                text: 'Outstanding service! Alpha Tax Consultant simplified our complex billing and expense tracking, saving us significant time. Highly recommended for any food business in Bareilly!',
+                logo: '/client-1.jpeg',
               },
               {
-                name: 'Priya Sharma',
-                company: 'Creative Designs Ltd',
+                name: 'Waseem Uddin',
+                company: 'Shakeel Warsi Traders',
                 rating: 5,
-                text: 'Professional, efficient, and reliable. Our financial reports are always accurate and on time. Great team to work with!',
+                text: 'Professional and reliable. Their expertise in GST filing and Audit compliance for wood trading is top-notch. Our reports are always accurate and on time.',
+                logo: '/client-2.jpeg',
+
               },
               {
-                name: 'Amit Patel',
-                company: 'Manufacturing Corp',
+                name: "Nazir Khan",
+                company: "Eligible4U",
                 rating: 5,
-                text: 'The best decision we made for our business. Their expertise has helped us optimize our finances and plan for growth.',
+                text: "The best decision for our growth. Their strategic financial advice and tax planning helped us optimize our finances perfectly. Truly an expert team!",
+                logo: '/client-3.jpeg',
+
               },
+              {
+                name: "Rajesh Kumar",
+                company: "Shoppe",
+                rating: 5,
+                text: "Managing GST and Ecommerce portals was a headache until I joined hands with Alpha Tax Consultant. They handle my GSTR-1, 3B, and portal reconciliations perfectly. Highly recommended for online sellers!",
+                logo: '/client-4.jpeg',
+              },
+              {
+                name: "Salman Ali",
+                company: "Gani Transport Company",
+                rating: 5,
+                text: "Alpha Tax Consultant is our go-to expert for transport accounting. They handle our complex RCM (Reverse Charge Mechanism) and Bilty (LR) reconciliations with zero errors. Their deep understanding of transport GST laws has saved us from heavy penalties.",
+                logo: '/client-5.jpeg',
+              },
+              {
+                name: "Umer Rashid Banday",
+                company: "Himalayan Zest Co.",
+                rating: 5,
+                text: "Humne apne business ke liye Udyam aur FSSAI registration karwaya tha. Alpha Tax Consultant ne poora process bahut smoothly handle kiya. Unki professionalism aur speed kaafi prabhavit karne wali hai. Food business start karne walon ke liye best choice hai!",
+                logo: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=800",
+              }
             ].map((testimonial, idx) => (
-              <Card key={idx} className="p-8 bg-card border border-border">
-                <div className="flex gap-1 mb-4">
-                  {Array(testimonial.rating)
-                    .fill(0)
-                    .map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                      />
-                    ))}
+              <Card key={idx} className="p-8 bg-card border border-border flex flex-col h-full hover:shadow-lg transition-shadow duration-300">
+                <div className="mb-4">
+                  <div className="flex gap-0.5 mb-4">
+                    {Array(testimonial.rating)
+                      .fill(0)
+                      .map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                        />
+                      ))}
+                  </div>
+                  <div className="relative">
+                    <Quote className="w-8 h-8 text-primary/10 absolute -top-2 -left-2 rotate-180" />
+                    <p className="text-muted-foreground mb-4 leading-relaxed italic relative z-10 pl-4">
+                      &quot;{testimonial.text}&quot;
+                    </p>
+                  </div>
                 </div>
-                <p className="text-muted-foreground mb-6">{testimonial.text}</p>
-                <div>
-                  <h4 className="font-semibold">{testimonial.name}</h4>
-                  <p className="text-sm text-muted-foreground">{testimonial.company}</p>
+
+                <div className="flex items-center gap-4 mt-auto pt-6 border-t border-border/50">
+                  <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center bg-secondary text-primary border border-border shadow-sm flex-shrink-0 relative">
+                    <User className="w-5 h-5 absolute text-primary/20" />
+                    <Image
+                      src={testimonial.logo}
+                      alt={testimonial.name}
+                      width={48}
+                      height={48}
+                      className="w-full h-full object-cover relative z-10"
+                    />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-foreground leading-none mb-1">{testimonial.name}</h4>
+                    <p className="text-[10px] text-muted-foreground font-semibold uppercase tracking-widest">{testimonial.company}</p>
+                  </div>
                 </div>
               </Card>
             ))}
@@ -296,7 +356,7 @@ export default function Page() {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    placeholder="Your name"
+                    placeholder="Eg. Nadeem Khan"
                     className="w-full"
                     required
                   />
@@ -312,7 +372,7 @@ export default function Page() {
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      placeholder="your@email.com"
+                      placeholder="Eg. Nadeemkhan.acct@gmail.com"
                       className="w-full"
                       required
                     />
@@ -327,7 +387,7 @@ export default function Page() {
                       type="tel"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      placeholder="Your phone number"
+                      placeholder="Eg. 6301843321"
                       className="w-full"
                       required
                     />
@@ -345,12 +405,14 @@ export default function Page() {
                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <option value="">Select a service (Optional)</option>
-                    <option value="GST Filing">GST Filing</option>
-                    <option value="Income Tax Return">Income Tax Return</option>
-                    <option value="Audit Services">Audit Services</option>
-                    <option value="Bookkeeping">Bookkeeping</option>
-                    <option value="Business Registration">Business Registration</option>
-                    <option value="Financial Planning">Financial Planning</option>
+                    <option value="GST Registration/Filing">GST Registration/Filing</option>
+                    <option value="FSSAI License">FSSAI License</option>
+                    <option value="ITR Filing">ITR Filing</option>
+                    <option value="MSME/Udyam Registration">MSME/Udyam Registration</option>
+                    <option value="eCommerce Business Setup">eCommerce Business Setup</option>
+                    <option value="Bookeeping">Bookeeping</option>
+                    <option value="Business Setup (Complete)">Business Setup (Complete)</option>
+                    <option value="Loan / Project Report">Loan / Project Report</option>
                     <option value="Other">Other</option>
                   </select>
                 </div>
@@ -426,7 +488,7 @@ export default function Page() {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Email</h4>
-                    <p className="text-muted-foreground">nadeemkhan.acct@gmail.com</p>
+                    <p className="text-muted-foreground">Nadeemkhan.acct@gmail.com</p>
                   </div>
                 </div>
 
@@ -436,7 +498,7 @@ export default function Page() {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Address</h4>
-                    <p className="text-muted-foreground">Parsa Khera, Rampur Road, Bareilly</p>
+                    <p className="text-muted-foreground">Near Jhumka Chauraha, Parsa Khera, Bareilly,</p>
                     <p className="text-muted-foreground"> Uttar Pradesh 243502</p>
                   </div>
                 </div>
@@ -474,23 +536,23 @@ export default function Page() {
             {[
               {
                 question: "GST registration kitne din me ho jata hai?",
-                answer: "GST registration usually takes 3-7 working days after all complete documents are submitted."
+                answer: "GST registration aam taur par 1 se 7 working days me ho jata hai, agar aapke saare documents sahi hain. Kuch cases mein department ki query aane par thoda zyada samay lag sakta hai."
               },
               {
                 question: "Income Tax Return filing ke liye kya documents chahiye?",
-                answer: "PAN card, Aadhaar card, Bank statements, and Form 16 (for salaried individuals) or business income details are typically required."
+                answer: "Basic documents mein aapka PAN Card, Aadhaar Card, aur Bank Statement zaroori hain. Agar aap salaried hain toh Form 16, aur agar businessman hain toh Books of Accounts bhi chahiye hongi."
               },
               {
                 question: "Loan approval me kitna time lagta hai?",
-                answer: "Loan approval time depends on the bank and loan type, usually ranging from a few days for personal loans to a couple of weeks for business loans."
+                answer: "Yeh loan ke type par depend karta hai. Personal ya Business loan aam taur par 5 se 10 din mein approve ho jate hain, jabki Home Loan ya Project-based loans mein thoda zyada waqt lag sakta hai."
               },
               {
                 question: "Kya pure online process possible hai?",
-                answer: "Haan, hamara process 100% online hai. Aap apne documents WhatsApp ya email ke through bhej sakte hain."
+                answer: "Ji haan, Alpha Tax Consultant poora kaam online handle karta hai. Aap apne documents WhatsApp (par 6301843321) ya Email (nadeemkhan.acct@gmail.com) par bhej sakte hain, aur aapko office aane ki zaroorat nahi padegi."
               },
               {
                 question: "Charges kitne hote hain?",
-                answer: "Charges depend on the specific service required and complexity of the work. Please contact us for a customized quote."
+                answer: "Humare charges kaam ki complexity aur service ke hisaab se hote hain. Hum affordable aur transparent pricing mein vishwas rakhte hain bina kisi hidden charges ke. Sahi estimate ke liye aap humein apni requirements ke saath message kar sakte hain."
               }
             ].map((faq, idx) => (
               <details key={idx} className="group border-b border-border last:border-0">
@@ -514,7 +576,7 @@ export default function Page() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <h4 className="font-bold mb-4">AccountPro</h4>
+              <h4 className="font-bold mb-4">Alpha Tax Consultant</h4>
               <p className="text-primary-foreground/80 text-sm">
                 Professional accounting and tax services for your business.
               </p>
@@ -523,13 +585,16 @@ export default function Page() {
               <h4 className="font-semibold mb-4">Services</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <a href="#services" className="hover:text-white transition">GST Filing</a>
+                  <a href="#services" className="hover:text-white transition">GST Filing & Registration</a>
                 </li>
                 <li>
-                  <a href="#services" className="hover:text-white transition">Tax Returns</a>
+                  <a href="#services" className="hover:text-white transition">Income Tax Return ( ITR )</a>
                 </li>
                 <li>
-                  <a href="#services" className="hover:text-white transition">Audit Services</a>
+                  <a href="#services" className="hover:text-white transition">MSME (Udyam) & FSSAI Registration</a>
+                </li>
+                <li>
+                  <a href="#services" className="hover:text-white transition">Transport & Ecomerece Portal Management</a>
                 </li>
               </ul>
             </div>
@@ -541,6 +606,9 @@ export default function Page() {
                 </li>
                 <li>
                   <a href="#contact" className="hover:text-white transition">Contact</a>
+                </li>
+                <li>
+                  <a href="/blog" className="hover:text-white transition">Blog</a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition">Privacy</a>
@@ -591,11 +659,30 @@ export default function Page() {
           </div>
           <div className="border-t border-primary-foreground/20 pt-8">
             <p className="text-center text-primary-foreground/80 text-sm">
-              &copy; 2024 AccountPro. All rights reserved.
+              &copy; 2024 Alpha Tax Consultant. All rights reserved.
             </p>
           </div>
         </div>
       </footer >
+
+      {/* Floating WhatsApp Button */}
+      {showWhatsApp && (
+        <a
+          href="https://wa.me/message/VA6S6FTVC2QNF1"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-6 right-6 z-50 flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white py-3 px-6 rounded-full font-bold transition-all duration-300 shadow-2xl hover:scale-110 animate-in fade-in slide-in-from-bottom-4"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            className="w-6 h-6 fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg>
+          Message on WhatsApp
+        </a>
+      )}
     </div >
   )
 }
