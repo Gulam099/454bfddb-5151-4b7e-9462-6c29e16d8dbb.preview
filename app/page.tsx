@@ -16,7 +16,53 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel"
+
+const TESTIMONIALS = [
+  {
+    name: 'Azeem Khan',
+    company: 'The Forest Cafe',
+    rating: 5,
+    text: 'Outstanding service! Alpha Tax Consultant simplified our complex billing and expense tracking, saving us significant time. Highly recommended for any food business in Bareilly!',
+    logo: '/client-1.jpeg',
+  },
+  {
+    name: 'Waseem Uddin',
+    company: 'Shakeel Warsi Traders',
+    rating: 5,
+    text: 'Professional and reliable. Their expertise in GST filing and Audit compliance for wood trading is top-notch. Our reports are always accurate and on time.',
+    logo: '/client-2.jpeg',
+  },
+  {
+    name: "Nazir Khan",
+    company: "Eligible4U",
+    rating: 5,
+    text: "The best decision for our growth. Their strategic financial advice and tax planning helped us optimize our finances perfectly. Truly an expert team!",
+    logo: '/client-3.jpeg',
+  },
+  {
+    name: "Rajesh Kumar",
+    company: "Shoppe",
+    rating: 5,
+    text: "Managing GST and Ecommerce portals was a headache until I joined hands with Alpha Tax Consultant. They handle my GSTR-1, 3B, and portal reconciliations perfectly. Highly recommended for online sellers!",
+    logo: '/client-4.jpeg',
+  },
+  {
+    name: "Salman Ali",
+    company: "Gani Transport Company",
+    rating: 5,
+    text: "Alpha Tax Consultant is our go-to expert for transport accounting. They handle our complex RCM (Reverse Charge Mechanism) and Bilty (LR) reconciliations with zero errors. Their deep understanding of transport GST laws has saved us from heavy penalties.",
+    logo: '/client-5.jpeg',
+  },
+  {
+    name: "Umer Rashid Banday",
+    company: "Himalayan Zest Co.",
+    rating: 5,
+    text: "Humne apne business ke liye Udyam aur FSSAI registration karwaya tha. Alpha Tax Consultant ne poora process bahut smoothly handle kiya. Unki professionalism aur speed kaafi prabhavit karne wali hai. Food business start karne walon ke liye best choice hai!",
+    logo: "/client-6.jpg",
+  }
+];
 
 export default function Page() {
   const [formData, setFormData] = useState({
@@ -29,6 +75,7 @@ export default function Page() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showWhatsApp, setShowWhatsApp] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [api, setApi] = useState<CarouselApi>()
   const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error', msg: string } | null>(null)
 
   useEffect(() => {
@@ -250,63 +297,20 @@ export default function Page() {
       <section className="py-20 bg-secondary/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-16">Client Testimonials</h2>
-          <div className="relative px-12">
+          <div className="relative px-0 md:px-12">
             <Carousel
+              setApi={setApi}
               opts={{
                 align: "start",
                 loop: false,
+                skipSnaps: false,
               }}
               className="w-full"
             >
-              <CarouselContent>
-                {[
-                  {
-                    name: 'Azeem Khan',
-                    company: 'The Forest Cafe',
-                    rating: 5,
-                    text: 'Outstanding service! Alpha Tax Consultant simplified our complex billing and expense tracking, saving us significant time. Highly recommended for any food business in Bareilly!',
-                    logo: '/client-1.jpeg',
-                  },
-                  {
-                    name: 'Waseem Uddin',
-                    company: 'Shakeel Warsi Traders',
-                    rating: 5,
-                    text: 'Professional and reliable. Their expertise in GST filing and Audit compliance for wood trading is top-notch. Our reports are always accurate and on time.',
-                    logo: '/client-2.jpeg',
-
-                  },
-                  {
-                    name: "Nazir Khan",
-                    company: "Eligible4U",
-                    rating: 5,
-                    text: "The best decision for our growth. Their strategic financial advice and tax planning helped us optimize our finances perfectly. Truly an expert team!",
-                    logo: '/client-3.jpeg',
-
-                  },
-                  {
-                    name: "Rajesh Kumar",
-                    company: "Shoppe",
-                    rating: 5,
-                    text: "Managing GST and Ecommerce portals was a headache until I joined hands with Alpha Tax Consultant. They handle my GSTR-1, 3B, and portal reconciliations perfectly. Highly recommended for online sellers!",
-                    logo: '/client-4.jpeg',
-                  },
-                  {
-                    name: "Salman Ali",
-                    company: "Gani Transport Company",
-                    rating: 5,
-                    text: "Alpha Tax Consultant is our go-to expert for transport accounting. They handle our complex RCM (Reverse Charge Mechanism) and Bilty (LR) reconciliations with zero errors. Their deep understanding of transport GST laws has saved us from heavy penalties.",
-                    logo: '/client-5.jpeg',
-                  },
-                  {
-                    name: "Umer Rashid Banday",
-                    company: "Himalayan Zest Co.",
-                    rating: 5,
-                    text: "Humne apne business ke liye Udyam aur FSSAI registration karwaya tha. Alpha Tax Consultant ne poora process bahut smoothly handle kiya. Unki professionalism aur speed kaafi prabhavit karne wali hai. Food business start karne walon ke liye best choice hai!",
-                    logo: "/client-6.jpg",
-                  }
-                ].map((testimonial, idx) => (
-                  <CarouselItem key={idx} className="md:basis-1/2 lg:basis-1/3 pl-8">
-                    <Card className="p-8 bg-card border border-border flex flex-col h-full hover:shadow-lg transition-shadow duration-300">
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {TESTIMONIALS.map((testimonial, idx) => (
+                  <CarouselItem key={idx} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                    <Card className="p-6 md:p-8 bg-card border border-border flex flex-col h-full hover:shadow-lg transition-shadow duration-300 select-none">
                       <div className="mb-4">
                         <div className="flex gap-0.5 mb-4">
                           {Array(testimonial.rating)
@@ -351,9 +355,25 @@ export default function Page() {
                 <CarouselNext className="-right-12 h-12 w-12" />
               </div>
               {/* Mobile controls */}
-              <div className="flex justify-center gap-4 mt-8 md:hidden">
-                <CarouselPrevious className="static translate-y-0 h-10 w-10" />
-                <CarouselNext className="static translate-y-0 h-10 w-10" />
+              <div className="flex justify-center gap-6 mt-8 md:hidden">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="h-12 w-12 rounded-full z-10"
+                  onClick={() => api?.scrollPrev()}
+                  disabled={!api?.canScrollPrev()}
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="h-12 w-12 rounded-full z-10"
+                  onClick={() => api?.scrollNext()}
+                  disabled={!api?.canScrollNext()}
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </Button>
               </div>
             </Carousel>
           </div>
