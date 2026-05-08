@@ -7,9 +7,16 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ChevronDown, Check, Star, MapPin, Phone, Mail, IndianRupee, BriefcaseBusiness, FileText, ShieldPlus, Loader2, Send, Search, Instagram, Facebook, MessageCircle, Menu, X, Quote, User } from 'lucide-react'
+import { ChevronDown, Check, Star, MapPin, Phone, Mail, IndianRupee, BriefcaseBusiness, FileText, ShieldPlus, Loader2, Send, Search, Instagram, Facebook, MessageCircle, Menu, X, Quote, User, ChevronLeft, ChevronRight } from 'lucide-react'
 import HeroSection from '@/components/hero-section'
 import ServicesSection from '@/components/services-section'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 
 export default function Page() {
   const [formData, setFormData] = useState({
@@ -243,91 +250,112 @@ export default function Page() {
       <section className="py-20 bg-secondary/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-16">Client Testimonials</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: 'Azeem Khan',
-                company: 'The Forest Cafe',
-                rating: 5,
-                text: 'Outstanding service! Alpha Tax Consultant simplified our complex billing and expense tracking, saving us significant time. Highly recommended for any food business in Bareilly!',
-                logo: '/client-1.jpeg',
-              },
-              {
-                name: 'Waseem Uddin',
-                company: 'Shakeel Warsi Traders',
-                rating: 5,
-                text: 'Professional and reliable. Their expertise in GST filing and Audit compliance for wood trading is top-notch. Our reports are always accurate and on time.',
-                logo: '/client-2.jpeg',
+          <div className="relative px-12">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent>
+                {[
+                  {
+                    name: 'Azeem Khan',
+                    company: 'The Forest Cafe',
+                    rating: 5,
+                    text: 'Outstanding service! Alpha Tax Consultant simplified our complex billing and expense tracking, saving us significant time. Highly recommended for any food business in Bareilly!',
+                    logo: '/client-1.jpeg',
+                  },
+                  {
+                    name: 'Waseem Uddin',
+                    company: 'Shakeel Warsi Traders',
+                    rating: 5,
+                    text: 'Professional and reliable. Their expertise in GST filing and Audit compliance for wood trading is top-notch. Our reports are always accurate and on time.',
+                    logo: '/client-2.jpeg',
 
-              },
-              {
-                name: "Nazir Khan",
-                company: "Eligible4U",
-                rating: 5,
-                text: "The best decision for our growth. Their strategic financial advice and tax planning helped us optimize our finances perfectly. Truly an expert team!",
-                logo: '/client-3.jpeg',
+                  },
+                  {
+                    name: "Nazir Khan",
+                    company: "Eligible4U",
+                    rating: 5,
+                    text: "The best decision for our growth. Their strategic financial advice and tax planning helped us optimize our finances perfectly. Truly an expert team!",
+                    logo: '/client-3.jpeg',
 
-              },
-              {
-                name: "Rajesh Kumar",
-                company: "Shoppe",
-                rating: 5,
-                text: "Managing GST and Ecommerce portals was a headache until I joined hands with Alpha Tax Consultant. They handle my GSTR-1, 3B, and portal reconciliations perfectly. Highly recommended for online sellers!",
-                logo: '/client-4.jpeg',
-              },
-              {
-                name: "Salman Ali",
-                company: "Gani Transport Company",
-                rating: 5,
-                text: "Alpha Tax Consultant is our go-to expert for transport accounting. They handle our complex RCM (Reverse Charge Mechanism) and Bilty (LR) reconciliations with zero errors. Their deep understanding of transport GST laws has saved us from heavy penalties.",
-                logo: '/client-5.jpeg',
-              },
-              {
-                name: "Umer Rashid Banday",
-                company: "Himalayan Zest Co.",
-                rating: 5,
-                text: "Humne apne business ke liye Udyam aur FSSAI registration karwaya tha. Alpha Tax Consultant ne poora process bahut smoothly handle kiya. Unki professionalism aur speed kaafi prabhavit karne wali hai. Food business start karne walon ke liye best choice hai!",
-                logo: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=800",
-              }
-            ].map((testimonial, idx) => (
-              <Card key={idx} className="p-8 bg-card border border-border flex flex-col h-full hover:shadow-lg transition-shadow duration-300">
-                <div className="mb-4">
-                  <div className="flex gap-0.5 mb-4">
-                    {Array(testimonial.rating)
-                      .fill(0)
-                      .map((_, i) => (
-                        <Star
-                          key={i}
-                          className="w-4 h-4 fill-yellow-400 text-yellow-400"
-                        />
-                      ))}
-                  </div>
-                  <div className="relative">
-                    <Quote className="w-8 h-8 text-primary/10 absolute -top-2 -left-2 rotate-180" />
-                    <p className="text-muted-foreground mb-4 leading-relaxed italic relative z-10 pl-4">
-                      &quot;{testimonial.text}&quot;
-                    </p>
-                  </div>
-                </div>
+                  },
+                  {
+                    name: "Rajesh Kumar",
+                    company: "Shoppe",
+                    rating: 5,
+                    text: "Managing GST and Ecommerce portals was a headache until I joined hands with Alpha Tax Consultant. They handle my GSTR-1, 3B, and portal reconciliations perfectly. Highly recommended for online sellers!",
+                    logo: '/client-4.jpeg',
+                  },
+                  {
+                    name: "Salman Ali",
+                    company: "Gani Transport Company",
+                    rating: 5,
+                    text: "Alpha Tax Consultant is our go-to expert for transport accounting. They handle our complex RCM (Reverse Charge Mechanism) and Bilty (LR) reconciliations with zero errors. Their deep understanding of transport GST laws has saved us from heavy penalties.",
+                    logo: '/client-5.jpeg',
+                  },
+                  {
+                    name: "Umer Rashid Banday",
+                    company: "Himalayan Zest Co.",
+                    rating: 5,
+                    text: "Humne apne business ke liye Udyam aur FSSAI registration karwaya tha. Alpha Tax Consultant ne poora process bahut smoothly handle kiya. Unki professionalism aur speed kaafi prabhavit karne wali hai. Food business start karne walon ke liye best choice hai!",
+                    logo: "/client-6.jpg",
+                  }
+                ].map((testimonial, idx) => (
+                  <CarouselItem key={idx} className="md:basis-1/2 lg:basis-1/3 pl-8">
+                    <Card className="p-8 bg-card border border-border flex flex-col h-full hover:shadow-lg transition-shadow duration-300">
+                      <div className="mb-4">
+                        <div className="flex gap-0.5 mb-4">
+                          {Array(testimonial.rating)
+                            .fill(0)
+                            .map((_, i) => (
+                              <Star
+                                key={i}
+                                className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                              />
+                            ))}
+                        </div>
+                        <div className="relative">
+                          <Quote className="w-8 h-8 text-primary/10 absolute -top-2 -left-2 rotate-180" />
+                          <p className="text-muted-foreground mb-4 leading-relaxed italic relative z-10 pl-4">
+                            &quot;{testimonial.text}&quot;
+                          </p>
+                        </div>
+                      </div>
 
-                <div className="flex items-center gap-4 mt-auto pt-6 border-t border-border/50">
-                  <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center bg-secondary text-primary border border-border shadow-sm flex-shrink-0 relative">
-                    <User className="w-5 h-5 absolute text-primary/20" />
-                    <Image
-                      src={testimonial.logo}
-                      alt={testimonial.name}
-                      width={48}
-                      height={48}
-                      className="w-full h-full object-cover relative z-10"
-                    />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-foreground leading-none mb-1">{testimonial.name}</h4>
-                    <p className="text-[10px] text-muted-foreground font-semibold uppercase tracking-widest">{testimonial.company}</p>
-                  </div>
-                </div>
-              </Card>
-            ))}
+                      <div className="flex items-center gap-4 mt-auto pt-6 border-t border-border/50">
+                        <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center bg-secondary text-primary border border-border shadow-sm flex-shrink-0 relative">
+                          <User className="w-5 h-5 absolute text-primary/20" />
+                          <Image
+                            src={testimonial.logo}
+                            alt={testimonial.name}
+                            width={48}
+                            height={48}
+                            className="w-full h-full object-cover relative z-10"
+                          />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-foreground leading-none mb-1">{testimonial.name}</h4>
+                          <p className="text-[10px] text-muted-foreground font-semibold uppercase tracking-widest">{testimonial.company}</p>
+                        </div>
+                      </div>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="hidden md:block">
+                <CarouselPrevious className="-left-12 h-12 w-12" />
+                <CarouselNext className="-right-12 h-12 w-12" />
+              </div>
+              {/* Mobile controls */}
+              <div className="flex justify-center gap-4 mt-8 md:hidden">
+                <CarouselPrevious className="static translate-y-0 h-10 w-10" />
+                <CarouselNext className="static translate-y-0 h-10 w-10" />
+              </div>
+            </Carousel>
           </div>
         </div>
       </section>
