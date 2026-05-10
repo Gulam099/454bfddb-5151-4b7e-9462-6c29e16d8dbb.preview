@@ -17,4 +17,5 @@ export interface BlogContextType {
   updatePost: (id: string, post: BlogPost) => void;
   deletePost: (id: string) => void;
   getPostBySlug: (slug: string) => BlogPost | undefined;
+  isLoading: boolean;
 }

@@ -11,6 +11,19 @@ const getSnippet = (content: string) => {
   return plainText.length > 150 ? plainText.substring(0, 150) + '...' : plainText;
 };
 
+const formatDate = (dateStr: string) => {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  if (!isNaN(d.getTime())) {
+    return d.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  }
+  return dateStr;
+};
+
 export default function BlogPage() {
   const { posts } = useBlog();
   const sortedPosts = [...posts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -101,11 +114,7 @@ export default function BlogPage() {
                     <div className="flex items-center gap-4 text-xs text-muted-foreground">
                       <div className="flex items-center gap-1.5">
                         <Calendar className="w-3.5 h-3.5" />
-                        {new Date(post.date || post.createdAt).toLocaleDateString('en-US', {
-                          month: 'short',
-                          day: 'numeric',
-                          year: 'numeric'
-                        })}
+                        {formatDate(post.date || post.createdAt)}
                       </div>
                       <div className="flex items-center gap-1.5">
                         <User className="w-3.5 h-3.5" />

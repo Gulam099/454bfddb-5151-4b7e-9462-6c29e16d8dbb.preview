@@ -88,6 +88,7 @@ export function BlogProvider({ children }: { children: ReactNode }) {
     updatePost,
     deletePost,
     getPostBySlug,
+    isLoading: loading,
   };
 
   return (
