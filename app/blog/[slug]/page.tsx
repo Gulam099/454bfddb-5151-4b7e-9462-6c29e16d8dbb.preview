@@ -17,16 +17,6 @@ export default function BlogPostPage({ params }: Props) {
   return <BlogPostContent slug={slug} />;
 }
 
-const getImageUrl = (url: string) => {
-  if (!url) return '';
-  if (url.includes('drive.google.com/file/d/')) {
-    const match = url.match(/\/d\/([^/]+)/);
-    if (match && match[1]) {
-      return `https://drive.google.com/uc?export=view&id=${match[1]}`;
-    }
-  }
-  return url;
-};
 
 function BlogPostContent({ slug }: { slug: string }) {
   const { getPostBySlug, isLoading } = useBlog();
@@ -79,7 +69,7 @@ function BlogPostContent({ slug }: { slug: string }) {
         {post.image && (
           <div className="mb-8 rounded-lg overflow-hidden bg-muted h-96">
             <img
-              src={getImageUrl(post.image)}
+              src={post.image}
               alt={post.title}
               className="w-full h-full object-cover"
             />
