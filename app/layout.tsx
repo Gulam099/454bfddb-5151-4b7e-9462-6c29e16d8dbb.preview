@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Alpha Tax Consultant',
   description: 'Reliable accounting and tax services to help your business stay compliant and grow financially. 10+ years of experience.',
   icons: {
-    icon: '/logo.jpeg',
+    icon: '/icon.png',
   },
 }
 

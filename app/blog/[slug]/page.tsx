@@ -157,7 +157,7 @@ function BlogPostContent({ slug }: { slug: string }) {
       {/* Footer */}
       <footer className="border-t border-border bg-card mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-muted-foreground">
-          <p>&copy; 2024 Accounting Pro. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Alpha Tax Consultant. All rights reserved.</p>
         </div>
       </footer>
     </main>
