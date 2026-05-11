@@ -147,7 +147,7 @@ export default function Page() {
             <div className="hidden md:flex items-center gap-8">
               <a href="#services" className="text-sm hover:text-primary transition">Services</a>
               <a href="#about" className="text-sm hover:text-primary transition">About</a>
-              <Link href="/blog" className="text-sm hover:text-primary transition">Blog</Link>
+              <Link href="/blog" className="text-sm hover:text-primary transition">Updates</Link>
               <a href="#contact" className="text-sm hover:text-primary transition">Contact</a>
             </div>
 
@@ -182,7 +182,7 @@ export default function Page() {
                 className="block text-base font-medium px-2 py-1 hover:text-primary transition"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Blog
+                Updates
               </Link>
               <a
                 href="#contact"
@@ -656,7 +656,7 @@ export default function Page() {
                   <a href="#contact" className="hover:text-white transition">Contact</a>
                 </li>
                 <li>
-                  <a href="/blog" className="hover:text-white transition">Blog</a>
+                  <a href="/blog" className="hover:text-white transition">Updates</a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition">Privacy</a>

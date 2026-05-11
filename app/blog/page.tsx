@@ -34,7 +34,7 @@ export default function BlogPage() {
       <header className="border-b border-border bg-card">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <Link href="/" className="text-xl font-semibold text-primary">
-            Accounting Pro
+            Alpha Tax Consultant
           </Link>
           <Link
             href="/"
