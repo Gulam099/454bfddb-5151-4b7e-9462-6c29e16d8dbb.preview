@@ -67,11 +67,11 @@ function BlogPostContent({ slug }: { slug: string }) {
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Image */}
         {post.image && (
-          <div className="mb-8 rounded-lg overflow-hidden bg-muted h-96">
+          <div className="mb-8 rounded-lg overflow-hidden bg-muted flex justify-center">
             <img
               src={post.image}
               alt={post.title}
-              className="w-full h-full object-cover"
+              className="w-full max-h-[600px] object-contain"
             />
           </div>
         )}

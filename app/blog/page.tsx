@@ -71,11 +71,11 @@ export default function BlogPage() {
               >
                 {/* Image Section */}
                 {post.image ? (
-                  <div className="h-56 bg-muted overflow-hidden relative">
+                  <div className="h-56 bg-muted overflow-hidden relative flex justify-center items-center">
                     <img
                       src={post.image}
                       alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                       onError={(e) => {
                         (e.target as HTMLImageElement).style.display = 'none';
                         (e.target as HTMLImageElement).parentElement!.classList.add('hidden');
