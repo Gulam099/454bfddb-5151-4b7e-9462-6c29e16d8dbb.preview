@@ -11,6 +11,7 @@ function CreatePostContent() {
   const router = useRouter();
   const { addPost } = useBlog();
   const [isLoading, setIsLoading] = useState(false);
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
     content: '',
@@ -41,6 +42,45 @@ function CreatePostContent() {
       ...prev,
       title,
     }));
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploadingImage(true);
+
+    try {
+      const data = new FormData();
+      data.append('file', file);
+      
+      // We will use env variables or placeholders if not set
+      const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || 'your_upload_preset';
+      const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'your_cloud_name';
+      
+      data.append('upload_preset', uploadPreset); 
+
+      const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+        method: 'POST',
+        body: data,
+      });
+
+      const result = await response.json();
+      
+      if (result.secure_url) {
+        setFormData(prev => ({
+          ...prev,
+          image: result.secure_url,
+        }));
+      } else {
+        alert('Failed to upload image. Please check your Cloudinary settings.');
+      }
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      alert('Error uploading image');
+    } finally {
+      setIsUploadingImage(false);
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -142,19 +182,57 @@ function CreatePostContent() {
             </div>
           </div>
 
-          {/* Image URL */}
+          {/* Image Upload / URL */}
           <div>
             <label className="block text-sm font-semibold text-foreground mb-2">
-              Image URL
+              Featured Image
             </label>
-            <input
-              type="text"
-              name="image"
-              value={formData.image}
-              onChange={handleChange}
-              placeholder="https://example.com/image.jpg"
-              className="w-full px-4 py-2 border border-border rounded-lg bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition"
-            />
+            <div className="space-y-4">
+              {/* File Upload */}
+              <div className="flex items-center gap-4">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="block w-full text-sm text-muted-foreground
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded-lg file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-primary file:text-primary-foreground
+                    hover:file:bg-primary/90 transition-colors cursor-pointer"
+                  disabled={isUploadingImage}
+                />
+                {isUploadingImage && <Loader2 className="w-5 h-5 animate-spin text-primary" />}
+              </div>
+              
+              <div className="relative flex items-center py-2">
+                <div className="flex-grow border-t border-border"></div>
+                <span className="flex-shrink-0 mx-4 text-muted-foreground text-sm">OR</span>
+                <div className="flex-grow border-t border-border"></div>
+              </div>
+
+              {/* Manual URL Input */}
+              <input
+                type="text"
+                name="image"
+                value={formData.image}
+                onChange={handleChange}
+                placeholder="Or paste an image URL here... e.g., https://example.com/image.jpg"
+                className="w-full px-4 py-2 border border-border rounded-lg bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition"
+              />
+              
+              {/* Image Preview */}
+              {formData.image && (
+                <div className="mt-4">
+                  <p className="text-sm font-medium mb-2">Preview:</p>
+                  <img 
+                    src={formData.image} 
+                    alt="Featured preview" 
+                    className="max-h-48 rounded-lg object-contain border border-border bg-muted/30" 
+                  />
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Featured */}
